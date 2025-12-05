@@ -25,7 +25,7 @@ A cross-platform application built with Flutter.
 
 1.  Clone the repository:
     ```sh
-    git clone <your-repository-url>
+    git clone <https://github.com/haywhyzero/bravooFlowvahub/>
     cd bravoo
     ```
 
