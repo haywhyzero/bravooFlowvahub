@@ -1,8 +1,41 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late Timer _timer;
+  late Duration _countdownDuration;
+
+  @override
+  void initState() {
+    super.initState();
+    _countdownDuration = const Duration(days: 4);
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        _countdownDuration -= const Duration(seconds: 1);
+      });
+      if (_countdownDuration.inSeconds <= 0) {
+        timer.cancel();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,18 +156,21 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 12),
                       
                       // Countdown Timer
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _buildTimeUnit('03', 'Days'),
-                          _buildTimeSeparator(),
-                          _buildTimeUnit('24', 'Hours'),
-                          _buildTimeSeparator(),
-                          _buildTimeUnit('00', 'Mins'),
-                          _buildTimeSeparator(),
-                          _buildTimeUnit('00', 'Secs'),
-                        ],
-                      ),
+                      if (_countdownDuration.inSeconds > 0)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _buildTimeUnit(_countdownDuration.inDays.toString().padLeft(2, '0'), 'Days'),
+                            _buildTimeSeparator(),
+                            _buildTimeUnit((_countdownDuration.inHours % 24).toString().padLeft(2, '0'), 'Hours'),
+                            _buildTimeSeparator(),
+                            _buildTimeUnit((_countdownDuration.inMinutes % 60).toString().padLeft(2, '0'), 'Mins'),
+                            _buildTimeSeparator(),
+                            _buildTimeUnit((_countdownDuration.inSeconds % 60).toString().padLeft(2, '0'), 'Secs'),
+                          ],
+                        )
+                      else
+                        const Text("DRAW HAS ENDED", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
                       
                       SizedBox(height: 20),
                       
