@@ -1,0 +1,43 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+*.DS_Store
+*.atom/
+*.tmLanguage
+*.sublime-project
+*.sublime-workspace
+*.project
+*.settings
+*.idea
+*.iml
+*.vs/
+*.vscode/
+
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+build/
+
+# Android related
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/local.properties
+
+# iOS related
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/Flutter/App.framework
+**/ios/Flutter/engine
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Pods/
+**/ios/Runner.xcworkspace
+
+# Custom
+notes.txt
+.env

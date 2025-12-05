@@ -1,0 +1,25 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+
+# Environment variables
+.env*
+
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+build/
+/ios/Pods/
+/ios/Flutter/App.framework
+/ios/Flutter/engine
+/ios/Flutter/flutter_assets
+.flutter-plugins
+.flutter-plugins-dependencies
+.idea
+
+
+# VSCode
+.vscode 
